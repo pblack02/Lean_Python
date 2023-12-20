@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Topic(models.Model):
+    objects = None
     top_name = models.CharField(max_length=264, unique=True)
 
     def __str__(self):
