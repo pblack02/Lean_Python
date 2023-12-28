@@ -1,0 +1,14 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block body_block %}
+    <div class="justify-content-center">
+        <h1>Welcome to the Details page!</h1>
+        <h2>School details: </h2>
+        <p>{{ school_details.name }}</p>
+        <p>{{ school_details.principal }}</p>
+        <p>{{ school_details.location }}</p>
+        <h3>Students: </h3>
+        {% for student in school_detail.students.all %}
+            <p>{{student.name}} who is {{student.age}} years old.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
