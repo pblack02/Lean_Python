@@ -20,12 +20,12 @@
                 <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social </a>
              <ul class="nav navbar-nav justify-content-end">
                  {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="">Post</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Groups</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Create Group</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'posts:create' %}">Post</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'groups:all' %}">Groups</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'groups:create' %}">Create Group</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
                  {% else %}
-                     <li class="nav-item"><a class="nav-link" href="">Groups</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{% url 'groups:all' %}">Groups</a></li>
                      <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
                      <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a></li>
                  {% endif %}
@@ -38,4 +38,5 @@
         {% endblock %}
     </div>
 </body>
+<script src="{% static 'simplesocial/js/master.js' %}" type="text/javascript"></script>
 </html>
