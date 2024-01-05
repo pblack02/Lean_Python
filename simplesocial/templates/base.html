@@ -9,33 +9,35 @@
 <!--    Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;1,200;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mynav" role="navigation" id="navbar">
-        <div class="container-fluid">
-                <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social </a>
+    <nav class="navbar navbar-expand-lg mynav" role="navigation" id="navbar">
+        <div class="container-fluid mynav">
+                <a class="navbar-brand mylink" href="{% url 'home' %}">Star Social </a>
              <ul class="nav navbar-nav justify-content-end">
                  {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'posts:create' %}">Post</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'groups:all' %}">Groups</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'groups:create' %}">Create Group</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'posts:create' %}">Post</a></li>
+                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'groups:all' %}">Groups</a></li>
+                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'groups:create' %}">Create Group</a></li>
+                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'accounts:logout' %}">Logout</a></li>
                  {% else %}
-                     <li class="nav-item"><a class="nav-link" href="{% url 'groups:all' %}">Groups</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a></li>
+                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'groups:all' %}">Groups</a></li>
+                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'accounts:login' %}">Login</a></li>
+                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'accounts:signup' %}">Sign Up</a></li>
                  {% endif %}
             </ul>
         </div>
     </nav>
     <div class="container mycontent">
+        <canvas id="canvas"></canvas>
+        <span id="note">
         {% block content %}
 
         {% endblock %}
+        </span>
     </div>
 </body>
 <script src="{% static 'simplesocial/js/master.js' %}" type="text/javascript"></script>

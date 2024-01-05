@@ -1,6 +1,55 @@
-/*body {*/
-/*    margin: 0;*/
-/*    overflow: hidden;*/
-/*    background-color: black;*/
-/*    color: white;*/
-/*}*/
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: black;
+  /*margin: 0;*/
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#note {
+  position: absolute;
+  color: rgba(249,241,204,1);
+  left: 0;
+  right: 0;
+  bottom: 25em;
+  margin: unset;
+  text-align: center;
+  user-select: none;
+  font-family: 'Exo 2', sans-serif;
+}
+
+
+.list-group-item{
+  margin: 2px;
+}
+.navbar{
+  background: black;
+}
+.mynav {
+   background: black;
+   color: white;
+   font-family: 'Exo 2', sans-serif;
+  margin: 2px;
+}
+
+.mylink {
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.mycontent {
+  font-family: 'Exo 2', sans-serif;
+}
+.mynav a:hover{
+  color: blueviolet;
+}
+
+
+
+
+
+
+
