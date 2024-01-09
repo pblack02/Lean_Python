@@ -15,11 +15,13 @@ User = get_user_model()
 # Create your views here
 
 class PostList(SelectRelatedMixin, generic.ListView):
+    paginate_by = 3
     model = models.Post
     select_related = ('user', 'group')
 
 
 class UserPost(generic.ListView):
+    paginate_by = 3
     model = models.Post
     template_name = 'posts/user_post_list.html'
 
@@ -38,12 +40,15 @@ class UserPost(generic.ListView):
 
 
 class PostDetail(SelectRelatedMixin, generic.DetailView):
+    paginate_by = 3
     model = models.Post
     select_related = ('user', 'group')
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user__username__iexact=self.kwargs.get('username'))
+        queryset = queryset.filter(user__username__iexact=self.kwargs.get('username'))
+        queryset = queryset.order_by('-created_at')
+        return queryset
 
 
 class CreatePost(LoginRequiredMixin, generic.CreateView, SelectRelatedMixin):

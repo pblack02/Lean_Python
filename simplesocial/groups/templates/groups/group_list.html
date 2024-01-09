@@ -3,13 +3,15 @@
     <div class="col-md-4">
         <div class="content">
             {% if user.is_authenticated %}
-                <h2>Welcome back! <a href="{% url 'posts:for_user' username=user.username %}">
+            <br>
+                <h2>Welcome!
+                    <br>
+                    <a class="user_href" href="{% url 'posts:for_user' username=user.username %}">
                     @{{user.username}}
                 </a></h2>
             {% endif %}
-            <h2>Groups</h2>
-            <p>Welcome to the groups page!</p>
         </div>
+        <br>
         {% if user.is_authenticated %}
             <a href="{% url 'groups:create' %}" class="btn btn-md btn-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
@@ -18,9 +20,11 @@
     </div>
 {% endblock %}
 {% block group_content %}
+    <br>
     <div class="col-md-8">
         <div class="list-group">
-            {% for group in object_list %}
+             <h1>Groups!</h1>
+            {% for group in page_obj %}
                 <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
                     <h3 class="title list-group-item-heading">{{group.name}}</h3>
                     <div class="list-group-item-text container-fluid">
@@ -39,5 +43,20 @@
                 </a>
             {% endfor %}
         </div>
+        <!-- Pagination links -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
     </div>
+</div>
+
 {% endblock %}

@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.views import generic
 from groups.models import Group, GroupMember
 from . import models
+from django.core.paginator import Paginator
 
 
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
@@ -20,7 +21,13 @@ class SingleGroup(generic.DetailView):
 
 
 class ListGroups(generic.ListView):
+    paginate_by = 3
     model = Group
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.order_by('-members')
+        return queryset
 
 
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):

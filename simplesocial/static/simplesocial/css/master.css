@@ -1,38 +1,38 @@
-
+html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
   background: black;
-  /*margin: 0;*/
   color: white;
+  overflow: hidden;
+  margin: 0;
   font-family: 'Exo 2', sans-serif;
 }
 
 #note {
-  position: absolute;
-  color: rgba(249,241,204,1);
-  left: 0;
-  right: 0;
-  bottom: 25em;
-  margin: unset;
-  text-align: center;
-  user-select: none;
-  font-family: 'Exo 2', sans-serif;
+    position: absolute;
+    color: rgba(249,241,204,1);
+    left: 0;
+    right: 0;
+    bottom: 25em;
+    margin: unset;
+    text-align: center;
+    user-select: none;
+    font-family: 'Exo 2', sans-serif;
 }
 
-
-.list-group-item{
+.list-group-item {
   margin: 2px;
 }
-.navbar{
+
+.navbar {
   background: black;
 }
 .mynav {
    background: black;
    color: white;
    font-family: 'Exo 2', sans-serif;
-  margin: 2px;
+   margin: 2px;
 }
 
 .mylink {
