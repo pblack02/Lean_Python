@@ -8,6 +8,7 @@ from braces.views import SelectRelatedMixin
 from . import models
 from . import forms
 from django.contrib.auth import get_user_model
+from groups.models import Group
 
 User = get_user_model()
 
@@ -18,6 +19,14 @@ class PostList(SelectRelatedMixin, generic.ListView):
     paginate_by = 3
     model = models.Post
     select_related = ('user', 'group')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            # Adjusting how to retrieve the user's groups based on your GroupMember model
+            user_groups = models.Group.objects.filter(memberships__user=self.request.user)
+            context['get_user_groups'] = user_groups
+        return context
 
 
 class UserPost(generic.ListView):
@@ -74,4 +83,3 @@ class DeletePost(LoginRequiredMixin, generic.DeleteView, SelectRelatedMixin):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Post Deleted')
         return super().delete(*args, **kwargs)
-

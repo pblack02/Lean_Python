@@ -1,11 +1,10 @@
-
-(function() {
+(function () {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     let canvasWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let canvasHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-    const fireflies = [];
+    let fireflies = [];
     const numberOfFirefly = 30;
     const birthToGive = 35;
 
@@ -32,13 +31,14 @@
     }
 
     class Firefly {
-            constructor(id, x = null, y = null) {
+        constructor(id, x = null, y = null) {
             this.id = id;
             this.width = getRandomInt(3, 6);
             this.height = getRandomInt(3, 6);
             this.x = x !== null ? x : getRandomInt(0, canvas.width - this.width);
             this.y = y !== null ? y : getRandomInt(0, canvas.height - this.height);
-            this.speed = (this.width <= 10) ? 5 : 5;
+            this.speed = (this.width <= 10) ? .7 : 1.7;
+            console.log(this.speed);
             this.alpha = 1;
             this.alphaReduction = getRandomInt(1, 3) / 1000;
             this.color = colorPalettes[colorTheme][getRandomInt(0, colorPalettes[colorTheme].length - 1)];
@@ -95,8 +95,12 @@
         }
 
         die() {
-            fireflies.splice(this.id, 1);
+            const index = fireflies.findIndex(f => f === this);
+            if (index > -1) {
+                fireflies.splice(index, 1);
+            }
         }
+
 
         update() {
             this.updatePosition();
@@ -116,20 +120,23 @@
         requestAnimationFrame(animate);
     }
 
-    canvas.onclick = function(e) {
+
+    canvas.onclick = function (e) {
         giveBirth(e, birthToGive);
     };
 
     function giveBirth(e, count) {
         for (let i = 0; i < count; i++) {
+            // Create a new firefly with a unique ID
             const newFirefly = new Firefly(fireflies.length);
-            newFirefly.x = e.offsetX;
-            newFirefly.y = e.offsetY;
+            newFirefly.x = e.offsetX - newFirefly.width / 2;
+            newFirefly.y = e.offsetY - newFirefly.height / 2;
             fireflies.push(newFirefly);
         }
     }
 
-    window.onload = function() {
+
+    window.onload = function () {
         setCanvasSize();
         instantiatePopulation();
         animate();
@@ -137,8 +144,6 @@
 
     window.onresize = setCanvasSize;
 })();
-
-
 
 
 // SOURCE: http://codepen.io/Thibka/pen/mWGxNj

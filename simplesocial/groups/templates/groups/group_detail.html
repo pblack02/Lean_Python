@@ -1,15 +1,19 @@
 {% extends "groups/group_base.html" %}
 {% block pregroup %}
     <div class="col-md-4 align-self-end">
-    <h1>{{group.name}}</h1>
-    <h2>Member Count: {{group.members.count}}</h2>
-    <div class="content">
-        {% if user in group.members.all %}
-            <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-light">Leave</a>
-        {% else %}
-            <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-light">Join</a>
-        {% endif %}
-    </div>
+        <h1>{{ group.name }}</h1>
+        <h2>Member Count: {{ group.members.count }}</h2>
+        <div class="content">
+            {% if user.is_authenticated and user == group.creator %}
+                <a href="{% url 'groups:delete_group' slug=group.slug %}" class="btn btn-lg btn-danger m-2">Delete Group</a>
+            {% endif %}
+             <br>
+            {% if user in group.members.all %}
+                 <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-light">Leave</a>
+            {% else %}
+                 <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-light">Join</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 
@@ -18,9 +22,24 @@
         {% if group.posts.count == 0 %}
             <h2>No posts in this group yet!</h2>
         {% else %}
-            {% for post in group.posts.all %}
-                {% include "posts/_post.html" %}
-            {% endfor %}
+        {% for post in posts %}
+            {% include "posts/_post.html" %}
+        {% endfor %}
+        <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page=1">&laquo; Previous</a>
+            {% endif %}
+
+        <span class="current">
+        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">Next</a>
+        {% endif %}
+        </span>
+        </div>
         {% endif %}
     </div>
 {% endblock %}

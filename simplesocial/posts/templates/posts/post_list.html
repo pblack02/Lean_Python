@@ -2,31 +2,34 @@
 {% block prepost %}
     <div class="col-md-4">
         {% if request.user.is_authenticated %}
-            <div class="card card-with-shadow">
+        <h1 class="title">Your Groups</h1>
+        <br>
+<!--            <div class="card card-with-shadow">-->
                 <div class="content">
-                    <h5 class="title">Your Groups</h5>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled listLink">
                         {% for member_group in get_user_groups %}
-                            <li class="group li-with-bullet"><a href="{% url 'groups:single' slug=member_group.group.slug %}"></a></li>
+                        <p><li><a class="mylink postLink" href="{% url 'groups:single' slug=member_group.slug %}">{{ member_group.name }}</a></li></p>
                         {% endfor %}
                     </ul>
-                </div>
+<!--                </div>-->
             </div>
         {% endif %}
-        <div class="card card-with-shadow">
-            <div class="content">
-                <h5 class="title">All Groups</h5>
-                <ul class="list-unstyled">
-                    {% for other_group in get_other_groups %}
-                        <li class="group li-with-bullet"><a href="{% url 'groups:single' slug=other_group.slug %}"></a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+<!--        <div class="card card-with-shadow">-->
+<!--            <div class="content">-->
+<!--                <h5 class="title">All Groups</h5>-->
+<!--                <ul class="list-unstyled">-->
+<!--                    {% for other_group in get_other_groups %}-->
+<!--                        <li class="group li-with-bullet"><a href="{% url 'groups:single' slug=other_group.slug %}"></a></li>-->
+<!--                    {% endfor %}-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 {% endblock %}
 {% block post_content %}
     <div class="col-md-8">
+        <h1>Your Posts!</h1>
+        <br>
         {% for post in post_list %}
             {% include "posts/_post.html" %}
         {% endfor %}

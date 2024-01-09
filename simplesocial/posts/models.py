@@ -14,7 +14,7 @@ User = get_user_model()
 
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group, related_name='posts', on_delete=models.CASCADE, null=True, blank=True)

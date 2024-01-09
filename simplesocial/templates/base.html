@@ -19,7 +19,7 @@
                 <a class="navbar-brand mylink" href="{% url 'home' %}">Star Social </a>
              <ul class="nav navbar-nav justify-content-end">
                  {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'posts:create' %}">Post</a></li>
+                    <li class="nav-item"><a class="nav-link mylink" href="{% url 'posts:create' %}">New Post</a></li>
                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'groups:all' %}">Groups</a></li>
                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'groups:create' %}">Create Group</a></li>
                     <li class="nav-item"><a class="nav-link mylink" href="{% url 'accounts:logout' %}">Logout</a></li>

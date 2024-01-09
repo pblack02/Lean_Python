@@ -1,19 +1,20 @@
 {% extends 'posts/post_base.html' %}
 {% block prepost %}
     <div class="col-md-4">
-        <h1>Welcome back
-            <br>
-            @{{post_user.username}}</h1>
+        <h1>Welcome back</h1>
+        <br>
+        <h1>@{{post_user.username}}</h1>
     </div>
 {% endblock %}
 {% block post_content %}
     <div class="col-md-8">
         <h2>Your Posts!</h2>
+        <br>
         {% for post in post_list %}
             {% include 'posts/_post.html' %}
         {% endfor %}
          <!-- Pagination links -->
-    <div class="pagination">
+    <div class="pagination justify-content-start">
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>

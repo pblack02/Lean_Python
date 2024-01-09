@@ -4,9 +4,9 @@
         <div class="content">
             {% if user.is_authenticated %}
             <br>
-                <h2>Welcome!
+                <h2 class="user_href">Welcome!
                     <br>
-                    <a class="user_href" href="{% url 'posts:for_user' username=user.username %}">
+                    <a href="{% url 'posts:for_user' username=user.username %}">
                     @{{user.username}}
                 </a></h2>
             {% endif %}
@@ -22,7 +22,7 @@
 {% block group_content %}
     <br>
     <div class="col-md-8">
-        <div class="list-group">
+        <div class="list-group list-group-item-secondary">
              <h1>Groups!</h1>
             {% for group in page_obj %}
                 <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">

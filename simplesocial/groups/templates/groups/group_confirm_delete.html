@@ -1,0 +1,11 @@
+{% extends "groups/group_base.html" %}
+{% block group_content %}
+    <div>
+    <h2>Are you sure you want to delete this group?</h2>
+    <h3>"{{ object.name }}"</h3>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger btn-lg" value="Confirm Delete">
+    </form>
+{% endblock %}

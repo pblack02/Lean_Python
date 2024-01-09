@@ -14,7 +14,7 @@ body {
     color: rgba(249,241,204,1);
     left: 0;
     right: 0;
-    bottom: 25em;
+    bottom: 22em;
     margin: unset;
     text-align: center;
     user-select: none;
@@ -47,9 +47,20 @@ body {
   color: blueviolet;
 }
 
+.postLink {
+  color: rgba(249,241,204,1);
+  font-family: 'Exo 2', sans-serif;
+  text-decoration: none;
+}
+
+.listLink a:hover {
+    color: blueviolet;
+}
 
 
 
-
+.user_href a:hover {
+    color: blueviolet;
+}
 
 

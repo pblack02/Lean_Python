@@ -18,6 +18,7 @@ class Group(models.Model):
     description = models.TextField(blank=True, default="")
     description_html = models.TextField(blank=True, default="", editable=False)
     members = models.ManyToManyField(User, through='GroupMember')
+    creator = models.ForeignKey(User, related_name='created_groups', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
