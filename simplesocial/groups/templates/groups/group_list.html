@@ -6,7 +6,7 @@
             <br>
                 <h2 class="user_href">Welcome!
                     <br>
-                    <a href="{% url 'posts:for_user' username=user.username %}">
+                    <a class="postLink" href="{% url 'posts:for_user' username=user.username %}">
                     @{{user.username}}
                 </a></h2>
             {% endif %}
@@ -22,7 +22,7 @@
 {% block group_content %}
     <br>
     <div class="col-md-8">
-        <div class="list-group list-group-item-secondary">
+        <div class="list-group list-group-item-light">
              <h1>Groups!</h1>
             {% for group in page_obj %}
                 <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
