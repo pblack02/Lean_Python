@@ -39,7 +39,7 @@
             this.height = getRandomInt(3, 6);
             this.x = x !== null ? x : getRandomInt(0, canvasWidth - this.width);
             this.y = y !== null ? y : getRandomInt(0, canvasHeight - this.height);
-            this.speed = this.width <= 10 ? 1.5 : 2.5;
+            this.speed = this.width <= 10 ? 1 : 1.5;
             this.alpha = 1;
             this.alphaReduction = getRandomInt(1, 3) / 1000;
             this.color = colorPalettes[getRandomInt(0, colorPalettes.length - 1)]; // Randomly select color
